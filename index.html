@@ -4,469 +4,416 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tengo algo pendiente contigo 🍓</title>
+    <title>Tenemos un asunto pendiente</title>
 
     <style>
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             min-height: 100vh;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background:
-                radial-gradient(circle at top left, #fff1f6, transparent 35%),
-                radial-gradient(circle at bottom right, #ffd6e4, transparent 40%),
-                linear-gradient(135deg, #fff7fa, #ffe4ed);
+            background: #0d0d0d;
+            color: #f5f5f5;
+            font-family: Arial, Helvetica, sans-serif;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
             padding: 20px;
+
             overflow: hidden;
         }
 
-        /* =========================
+        /* -------------------------
            FONDO
-        ========================= */
+        ------------------------- */
 
-        .decoracion {
+        .ruido {
             position: fixed;
+            inset: 0;
+
+            opacity: 0.04;
+
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    #fff 3px
+                );
+
             pointer-events: none;
-            z-index: 0;
         }
 
-        .fresa {
+        .numero-fondo {
             position: fixed;
-            font-size: 28px;
-            opacity: .55;
-            animation: caer linear infinite;
+
+            right: -40px;
+            bottom: -60px;
+
+            font-size: 180px;
+
+            font-weight: bold;
+
+            color: #ffffff;
+
+            opacity: 0.025;
+
+            user-select: none;
         }
 
-        .f1 {
-            left: 5%;
-            animation-duration: 9s;
-        }
+        /* -------------------------
+           CONTENEDOR
+        ------------------------- */
 
-        .f2 {
-            left: 20%;
-            animation-duration: 12s;
-            animation-delay: 2s;
-        }
+        .contenedor {
+            width: 100%;
+            max-width: 600px;
 
-        .f3 {
-            left: 45%;
-            animation-duration: 10s;
-            animation-delay: 1s;
-        }
-
-        .f4 {
-            left: 70%;
-            animation-duration: 13s;
-            animation-delay: 3s;
-        }
-
-        .f5 {
-            left: 90%;
-            animation-duration: 11s;
-            animation-delay: 4s;
-        }
-
-        @keyframes caer {
-
-            0% {
-                transform: translateY(-70px) rotate(0deg);
-            }
-
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
-
-
-        /* =========================
-           TARJETA
-        ========================= */
-
-        .card {
             position: relative;
             z-index: 2;
-
-            width: 100%;
-            max-width: 440px;
-
-            background: rgba(255,255,255,.94);
-
-            border-radius: 30px;
-
-            padding: 35px 28px;
-
-            text-align: center;
-
-            box-shadow:
-                0 20px 60px rgba(170, 50, 90, .18);
-
-            border: 1px solid #ffd1df;
-
-            animation: entrada 1s ease;
         }
 
-        @keyframes entrada {
+        .pantalla {
+            display: none;
 
+            animation: aparecer 0.6s ease;
+        }
+
+        .pantalla.activa {
+            display: block;
+        }
+
+        @keyframes aparecer {
             from {
                 opacity: 0;
-                transform: translateY(35px) scale(.95);
+                transform: translateY(20px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-
-        /* =========================
-           ICONO
-        ========================= */
-
-        .icono {
-            font-size: 65px;
-
-            margin-bottom: 12px;
-
-            animation: flotar 2s ease-in-out infinite;
-        }
-
-        @keyframes flotar {
-
-            0%,100% {
                 transform: translateY(0);
             }
-
-            50% {
-                transform: translateY(-8px);
-            }
         }
 
+        /* -------------------------
+           ETIQUETA
+        ------------------------- */
 
-        /* =========================
-           TITULOS
-        ========================= */
+        .etiqueta {
+            display: inline-block;
 
-        h1 {
-            color: #c2185b;
+            border: 1px solid #444;
 
-            font-size: 30px;
+            color: #999;
 
-            margin-bottom: 12px;
-        }
+            padding: 7px 12px;
 
-        h2 {
-            color: #c2185b;
+            font-size: 11px;
 
-            margin-bottom: 15px;
-        }
-
-        .intro {
-            color: #777;
-
-            font-size: 16px;
-
-            line-height: 1.6;
+            letter-spacing: 2px;
 
             margin-bottom: 25px;
         }
 
+        /* -------------------------
+           TITULOS
+        ------------------------- */
 
-        /* =========================
-           BOTON COMENZAR
-        ========================= */
+        h1 {
+            font-size: clamp(40px, 10vw, 72px);
 
-        .btn-principal {
+            line-height: 0.95;
 
-            border: none;
+            letter-spacing: -3px;
 
-            background:
-                linear-gradient(135deg,#ec407a,#c2185b);
-
-            color: white;
-
-            padding: 15px 28px;
-
-            border-radius: 30px;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 8px 20px rgba(194,24,91,.25);
-
-            transition: .25s;
+            margin-bottom: 25px;
         }
 
-        .btn-principal:hover {
-            transform: scale(1.05);
+        h2 {
+            font-size: 34px;
+
+            margin-bottom: 25px;
         }
 
-
-        /* =========================
-           INVESTIGACIÓN
-        ========================= */
-
-        .investigacion {
-            display: none;
+        .rojo {
+            color: #ff3b30;
         }
 
-        .documento {
-
-            background: #fff5f8;
-
-            border-radius: 18px;
-
-            padding: 20px;
-
-            text-align: left;
-
-            border-left: 5px solid #e91e63;
-
-            margin-bottom: 20px;
-        }
-
-        .documento p {
-
-            margin-bottom: 10px;
-
-            color: #555;
-
-            font-size: 15px;
-        }
-
-        .documento strong {
-            color: #c2185b;
-        }
-
-
-        /* =========================
-           DEUDA
-        ========================= */
-
-        .deuda {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ec407a,
-                    #c2185b
-                );
-
-            color: white;
-
-            padding: 22px;
-
-            border-radius: 22px;
-
-            margin: 20px 0;
-
-            box-shadow:
-                0 10px 25px rgba(194,24,91,.25);
-        }
-
-        .deuda .numero {
-
-            font-size: 38px;
-
-            font-weight: bold;
-
-            margin-bottom: 5px;
-        }
-
-        .deuda .texto {
-
-            font-size: 18px;
-        }
-
-
-        /* =========================
-           PREGUNTA
-        ========================= */
-
-        .pregunta {
-
-            font-size: 19px;
-
-            font-weight: 600;
-
-            color: #555;
-
-            margin: 25px 0;
-        }
-
-
-        /* =========================
-           BOTONES
-        ========================= */
-
-        .botones {
-
-            position: relative;
-
-            min-height: 70px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            gap: 15px;
-        }
-
-        button {
-
-            border: none;
-
-            border-radius: 30px;
-
-            padding: 14px 22px;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .si {
-
-            background: #e91e63;
-
-            color: white;
-
-            box-shadow:
-                0 7px 18px rgba(233,30,99,.25);
-
-            transition: .2s;
-        }
-
-        .si:hover {
-            transform: scale(1.06);
-        }
-
-        .no {
-
-            background: #eeeeee;
-
-            color: #555;
-
-            transition: .25s;
-        }
-
-
-        /* =========================
-           FINAL
-        ========================= */
-
-        .final {
-
-            display: none;
-        }
-
-        .final h1 {
-
-            font-size: 32px;
-        }
-
-        .fresas-final {
-
-            font-size: 55px;
-
-            margin: 18px 0;
-
-            animation: aparecerFresas 1s ease;
-        }
-
-        @keyframes aparecerFresas {
-
-            from {
-                opacity: 0;
-                transform: scale(.5);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .mensaje {
-
-            color: #555;
+        .texto {
+            color: #999;
 
             font-size: 17px;
 
             line-height: 1.7;
+
+            max-width: 500px;
+
+            margin-bottom: 35px;
         }
 
-        .mensaje strong {
-            color: #c2185b;
-        }
+        /* -------------------------
+           BOTÓN PRINCIPAL
+        ------------------------- */
 
-        .plan {
+        .boton {
+            border: none;
 
-            margin-top: 22px;
+            background: #f5f5f5;
 
-            background: #fff0f5;
+            color: #0d0d0d;
 
-            padding: 18px;
+            padding: 17px 25px;
 
-            border-radius: 18px;
-
-            color: #c2185b;
+            font-size: 14px;
 
             font-weight: bold;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+        }
+
+        .boton:hover {
+            background: #ff3b30;
+
+            color: white;
+
+            transform: translateY(-3px);
+        }
+
+        .boton-rojo {
+            background: #ff3b30;
+
+            color: white;
+        }
+
+        .boton-rojo:hover {
+            background: white;
+
+            color: #0d0d0d;
+        }
+
+        /* -------------------------
+           EXPEDIENTE
+        ------------------------- */
+
+        .expediente {
+            border: 1px solid #333;
+
+            background: #111;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .fila {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #292929;
+        }
+
+        .fila:last-child {
+            border-bottom: none;
+        }
+
+        .campo {
+            color: #666;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .valor {
+            text-align: right;
+
+            font-size: 14px;
+
+            color: #eee;
+        }
+
+        /* -------------------------
+           DEUDA
+        ------------------------- */
+
+        .deuda {
+            border: 1px solid #ff3b30;
+
+            padding: 30px 20px;
+
+            margin: 25px 0;
+
+            text-align: center;
+
+            background: rgba(255, 59, 48, 0.04);
+        }
+
+        .deuda-numero {
+            font-size: 55px;
+
+            margin-bottom: 10px;
+        }
+
+        .deuda-titulo {
+            color: #ff3b30;
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        .deuda-subtitulo {
+            color: #888;
+
+            font-size: 13px;
+        }
+
+        /* -------------------------
+           BOTONES DE DECISIÓN
+        ------------------------- */
+
+        .decisiones {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            position: relative;
+        }
+
+        .decisiones button {
+            flex: 1;
+
+            min-width: 150px;
+        }
+
+        .boton-no {
+            background: transparent;
+
+            color: #888;
+
+            border: 1px solid #444;
+        }
+
+        .boton-no:hover {
+            background: #222;
+
+            color: white;
+
+            transform: none;
+        }
+
+        .mensaje {
+            height: 25px;
+
+            margin-top: 15px;
+
+            color: #ff3b30;
+
+            font-size: 12px;
+        }
+
+        /* -------------------------
+           PANTALLA FINAL
+        ------------------------- */
+
+        .resultado {
+            border-left: 3px solid #ff3b30;
+
+            padding-left: 20px;
+
+            margin: 25px 0;
+        }
+
+        .resultado p {
+            color: #999;
+
+            line-height: 1.7;
+
+            margin-bottom: 10px;
+        }
+
+        .resultado strong {
+            color: white;
+        }
+
+        .confirmacion {
+            margin-top: 30px;
+
+            border: 1px solid #292929;
+
+            background: #111;
+
+            padding: 25px;
+        }
+
+        .confirmacion-titulo {
+            font-size: 12px;
+
+            color: #666;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+        .confirmacion-texto {
+            font-size: 22px;
+
+            line-height: 1.4;
+        }
+
+        .nota {
+            margin-top: 30px;
+
+            color: #555;
+
+            font-size: 12px;
 
             line-height: 1.6;
         }
 
-        .firma {
+        /* -------------------------
+           LLUVIA DE FRESAS
+        ------------------------- */
 
-            margin-top: 25px;
-
-            color: #999;
-
-            font-size: 13px;
-
-            line-height: 1.5;
-        }
-
-
-        /* =========================
-           CORAZONES
-        ========================= */
-
-        .corazon {
-
+        .fresa {
             position: fixed;
 
-            top: -30px;
+            top: -50px;
 
-            z-index: 20;
+            z-index: 10;
+
+            font-size: 25px;
 
             pointer-events: none;
 
-            animation: lluvia 3.5s linear forwards;
+            animation: caer 3s linear forwards;
         }
 
-        @keyframes lluvia {
-
-            0% {
+        @keyframes caer {
+            from {
                 transform:
                     translateY(0)
                     rotate(0deg);
@@ -474,7 +421,7 @@
                 opacity: 1;
             }
 
-            100% {
+            to {
                 transform:
                     translateY(110vh)
                     rotate(360deg);
@@ -483,216 +430,330 @@
             }
         }
 
-
-        /* =========================
-           MENSAJE DEL NO
-        ========================= */
-
-        .mensaje-no {
-
-            min-height: 25px;
-
-            margin-top: 8px;
-
-            color: #c2185b;
-
-            font-size: 13px;
-
-            font-style: italic;
-        }
-
-
-        /* =========================
+        /* -------------------------
            CELULAR
-        ========================= */
+        ------------------------- */
 
-        @media(max-width:480px) {
+        @media (max-width: 600px) {
 
             body {
-                padding: 15px;
-            }
-
-            .card {
-                padding: 30px 20px;
+                padding: 25px 18px;
             }
 
             h1 {
-                font-size: 26px;
+                font-size: 45px;
+
+                letter-spacing: -2px;
             }
 
-            .icono {
-                font-size: 55px;
+            h2 {
+                font-size: 29px;
             }
 
-            .deuda .numero {
-                font-size: 32px;
-            }
-
-            .pregunta {
-                font-size: 17px;
-            }
-
-            button {
+            .texto {
                 font-size: 15px;
-                padding: 13px 18px;
+            }
+
+            .fila {
+                flex-direction: column;
+
+                gap: 7px;
+            }
+
+            .valor {
+                text-align: left;
+            }
+
+            .deuda-numero {
+                font-size: 48px;
+            }
+
+            .deuda-titulo {
+                font-size: 22px;
+            }
+
+            .decisiones {
+                flex-direction: column;
+            }
+
+            .decisiones button {
+                width: 100%;
             }
         }
 
     </style>
-
 </head>
 
 
 <body>
 
+    <div class="ruido"></div>
 
-    <!-- =========================
-         FRESAS DEL FONDO
-    ========================= -->
-
-    <div class="fresa f1">🍓</div>
-    <div class="fresa f2">🍓</div>
-    <div class="fresa f3">🍓</div>
-    <div class="fresa f4">🍓</div>
-    <div class="fresa f5">🍓</div>
+    <div class="numero-fondo">
+        01
+    </div>
 
 
-    <!-- =========================
-         TARJETA
-    ========================= -->
-
-    <div class="card">
+    <main class="contenedor">
 
 
-        <!-- =====================
-             PORTADA
-        ====================== -->
+        <!-- =================================
+             PANTALLA 1
+        ================================== -->
 
-        <div id="portada">
+        <section
+            id="pantalla1"
+            class="pantalla activa">
 
-            <div class="icono">
-                💌
+            <div class="etiqueta">
+                ARCHIVO #001
             </div>
 
             <h1>
-                Tengo algo pendiente contigo...
+                Tenemos un
+                <span class="rojo">asunto</span>
+                pendiente.
             </h1>
 
-            <p class="intro">
+            <p class="texto">
 
-                No te preocupes, no es nada malo. 😂
-
-                <br><br>
-
-                Bueno...
+                No es una conversación incómoda.
 
                 <br>
 
-                depende de cómo veas las deudas. 👀
+                Tampoco es un reclamo.
+
+                <br><br>
+
+                Es algo mucho más serio.
 
             </p>
 
             <button
-                class="btn-principal"
-                onclick="comenzar()">
+                class="boton boton-rojo"
+                onclick="mostrarPantalla(2)">
 
-                Ver de qué se trata 👀
+                DESCUBRIR EL ASUNTO →
 
             </button>
 
-        </div>
+        </section>
 
 
 
-        <!-- =====================
-             INVESTIGACIÓN
-        ====================== -->
+        <!-- =================================
+             PANTALLA 2
+        ================================== -->
 
-        <div
-            id="investigacion"
-            class="investigacion">
+        <section
+            id="pantalla2"
+            class="pantalla">
 
-            <div class="icono">
-                🔎
+            <div class="etiqueta">
+                INFORME DE INVESTIGACIÓN
             </div>
 
-            <h1>
-                Investigación oficial
-            </h1>
+            <h2>
+                Después de revisar
+                los hechos...
+            </h2>
 
-            <p class="intro">
+            <div class="expediente">
 
-                Después de una exhaustiva investigación
-                y de revisar los hechos...
+                <div class="fila">
+
+                    <div class="campo">
+                        Expediente
+                    </div>
+
+                    <div class="valor">
+                        #FRC-001
+                    </div>
+
+                </div>
+
+
+                <div class="fila">
+
+                    <div class="campo">
+                        Responsable
+                    </div>
+
+                    <div class="valor">
+                        Tú
+                    </div>
+
+                </div>
+
+
+                <div class="fila">
+
+                    <div class="campo">
+                        Estado
+                    </div>
+
+                    <div class="valor">
+                        Pendiente
+                    </div>
+
+                </div>
+
+
+                <div class="fila">
+
+                    <div class="campo">
+                        Evidencia
+                    </div>
+
+                    <div class="valor">
+                        Bastante clara
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p class="texto">
+
+                Se ha confirmado la existencia de
+                una deuda que lleva demasiado tiempo
+                sin ser saldada.
 
             </p>
 
 
-            <div class="documento">
+            <button
+                class="boton"
+                onclick="mostrarPantalla(3)">
 
-                <p>
-                    <strong>Expediente:</strong>
-                    #🍓-2026
-                </p>
+                VER LA EVIDENCIA →
 
-                <p>
-                    <strong>Acusado:</strong>
-                    Tú 😌
-                </p>
+            </button>
 
-                <p>
-                    <strong>Delito:</strong>
-                    Prometer fresas con crema y no cumplir.
-                </p>
+        </section>
 
-                <p>
-                    <strong>Estado del caso:</strong>
-                    Aún sin resolver.
-                </p>
 
+
+        <!-- =================================
+             PANTALLA 3
+        ================================== -->
+
+        <section
+            id="pantalla3"
+            class="pantalla">
+
+            <div class="etiqueta">
+                EVIDENCIA #001
             </div>
+
+            <h2>
+                La deuda.
+            </h2>
 
 
             <div class="deuda">
 
-                <div class="numero">
-                    1 🍓
+                <div class="deuda-numero">
+                    🍓
                 </div>
 
-                <div class="texto">
-                    Porción de fresas con crema
+                <div class="deuda-titulo">
+                    FRESAS CON CREMA
+                </div>
+
+                <div class="deuda-subtitulo">
+                    Cantidad pendiente: 1 porción
                 </div>
 
             </div>
 
 
-            <p class="pregunta">
+            <p class="texto">
 
-                Entonces...
+                Sí.
 
                 <br><br>
 
-                ¿Vas a pagar tu deuda? 👀
+                Estoy hablando de aquellas
+                fresas con crema que quedaron
+                pendientes.
+
+                <br><br>
+
+                Y antes de que intentes hacerte
+                el que no recuerda...
+
+                <br>
+
+                <strong style="color:white;">
+                    tenemos pruebas. 👀
+                </strong>
 
             </p>
 
 
-            <div class="botones">
+            <button
+                class="boton boton-rojo"
+                onclick="mostrarPantalla(4)">
+
+                CONTINUAR →
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================
+             PANTALLA 4
+        ================================== -->
+
+        <section
+            id="pantalla4"
+            class="pantalla">
+
+            <div class="etiqueta">
+                DECISIÓN FINAL
+            </div>
+
+            <h2>
+                Entonces...
+            </h2>
+
+            <p class="texto">
+
+                Tenemos dos opciones.
+
+                <br><br>
+
+                Puedes hacerte el loco...
+
+                <br>
+
+                o puedes pagar la deuda
+                como una persona responsable.
+
+            </p>
+
+
+            <div class="decisiones">
 
                 <button
-                    class="si"
+                    class="boton boton-rojo"
                     onclick="aceptar()">
 
-                    Sí, pago mi deuda 🍓❤️
+                    PAGAR LA DEUDA 🍓
 
                 </button>
 
 
                 <button
-                    class="no"
-                    id="noBtn">
+                    id="botonNo"
+                    class="boton boton-no"
+                    onclick="rechazar()">
 
-                    No 😌
+                    IGNORAR
 
                 </button>
 
@@ -700,168 +761,157 @@
 
 
             <div
-                class="mensaje-no"
-                id="mensajeNo">
+                id="mensaje"
+                class="mensaje">
 
             </div>
 
-        </div>
+        </section>
 
 
 
-        <!-- =====================
-             FINAL
-        ====================== -->
+        <!-- =================================
+             PANTALLA 5
+        ================================== -->
 
-        <div
-            id="final"
-            class="final">
+        <section
+            id="pantalla5"
+            class="pantalla">
 
-            <div class="icono">
-                🥰
+            <div class="etiqueta">
+                CASO RESUELTO
             </div>
 
             <h1>
-                ¡Sabía que aceptarías!
+                Bien.
             </h1>
 
+            <div class="resultado">
 
-            <div class="fresas-final">
-                🍓🍓🍓
-            </div>
+                <p>
+                    <strong>Deuda:</strong>
+                    1 porción de fresas con crema.
+                </p>
 
+                <p>
+                    <strong>Estado:</strong>
+                    Aceptada.
+                </p>
 
-            <p class="mensaje">
-
-                Oficialmente queda registrada
-                la aceptación de la deuda.
-
-                <br><br>
-
-                Y después de tantos meses...
-
-                <br>
-
-                creo que ya es hora de
-                <strong>pagarla como se debe.</strong> 😌
-
-                <br><br>
-
-                Porque una deuda de fresas con crema
-                no puede quedar en el olvido.
-
-            </p>
-
-
-            <div class="plan">
-
-                📅 <strong>Plan de pago:</strong>
-
-                <br>
-
-                Buscar un día.
-
-                <br>
-
-                Comprar las fresas.
-
-                <br>
-
-                Ponerles crema.
-
-                <br>
-
-                Y finalmente...
-
-                <br>
-
-                <strong>COMERLAS. 🍓🤍</strong>
+                <p>
+                    <strong>Forma de pago:</strong>
+                    Presencial.
+                </p>
 
             </div>
 
 
-            <p class="firma">
+            <div class="confirmacion">
 
-                Atentamente,
+                <div class="confirmacion-titulo">
+                    Siguiente paso
+                </div>
 
-                <br>
+                <div class="confirmacion-texto">
 
-                La persona que todavía
-                recuerda perfectamente esa deuda. 😂
+                    Solo falta decidir
+                    <span class="rojo">cuándo.</span>
+
+                </div>
+
+            </div>
+
+
+            <p class="nota">
+
+                * La presente resolución no admite
+                excusas, aplazamientos injustificados
+                ni desapariciones repentinas.
 
                 <br><br>
 
-                <strong>
-                    P.D. No acepto excusas.
-                </strong>
+                🍓 El caso permanecerá abierto
+                hasta que las fresas sean consumidas.
 
             </p>
 
-        </div>
+        </section>
 
 
-    </div>
+    </main>
 
 
 
     <script>
 
+        /* =================================
+           CAMBIAR PANTALLA
+        ================================== */
 
-        /* =========================
-           CAMBIAR DE PORTADA
-        ========================= */
+        function mostrarPantalla(numero) {
 
-        function comenzar() {
+            const pantallas =
+                document.querySelectorAll(".pantalla");
 
-            document.getElementById("portada").style.display = "none";
+            pantallas.forEach(function(pantalla) {
 
-            document.getElementById("investigacion").style.display = "block";
+                pantalla.classList.remove("activa");
+
+            });
+
+
+            const nueva =
+                document.getElementById(
+                    "pantalla" + numero
+                );
+
+
+            nueva.classList.add("activa");
 
         }
 
 
 
-        /* =========================
-           BOTÓN NO
-        ========================= */
-
-        const noBtn =
-            document.getElementById("noBtn");
-
-        const mensajeNo =
-            document.getElementById("mensajeNo");
-
+        /* =================================
+           BOTÓN IGNORAR
+        ================================== */
 
         let intentos = 0;
 
 
-        const mensajes = [
-
-            "¿Segura/o? 👀",
-
-            "Creo que marcaste la opción equivocada 😂",
-
-            "La deuda sigue existiendo... 🍓",
-
-            "No puedes escapar de las fresas 😌",
-
-            "Inténtalo otra vez 😂",
-
-            "Ese botón no te va a salvar 🍓",
-
-            "JAJAJA, qué difícil pagar una deuda 😭",
-
-            "Última oportunidad... 👀"
-
-        ];
-
-
-        noBtn.addEventListener("click", function() {
+        function rechazar() {
 
             intentos++;
 
 
-            mensajeNo.textContent =
+            const boton =
+                document.getElementById("botonNo");
+
+
+            const mensaje =
+                document.getElementById("mensaje");
+
+
+            const mensajes = [
+
+                "¿En serio? 🤨",
+
+                "Esa no parece ser la respuesta correcta.",
+
+                "La deuda sigue ahí.",
+
+                "Puedes intentarlo otra vez.",
+
+                "No funciona así 😂",
+
+                "Último intento...",
+
+                "Bueno, ya sabes cuál es la respuesta."
+
+            ];
+
+
+            mensaje.textContent =
                 mensajes[
                     Math.min(
                         intentos - 1,
@@ -871,119 +921,104 @@
 
 
             /*
-               Después de algunos intentos,
-               el botón comienza a escapar.
+               Después de varios intentos,
+               el botón empieza a moverse.
             */
 
             if (intentos >= 2) {
 
                 const x =
-                    Math.random() * 180 - 90;
+                    Math.random() * 160 - 80;
 
                 const y =
                     Math.random() * 100 - 50;
 
 
-                noBtn.style.transform =
+                boton.style.transform =
                     `translate(${x}px, ${y}px)`;
 
             }
 
 
             /*
-               Después de muchos intentos,
-               cambiamos el texto.
+               Después de suficientes intentos
+               cambia el texto.
             */
 
             if (intentos >= 6) {
 
-                noBtn.textContent =
-                    "Bueno... sí 😭";
+                boton.textContent =
+                    "BUENO, ESTÁ BIEN";
 
             }
-
-        });
-
-
-
-        /* =========================
-           ACEPTAR
-        ========================= */
-
-        function aceptar() {
-
-            document.getElementById("investigacion")
-                .style.display = "none";
-
-
-            document.getElementById("final")
-                .style.display = "block";
-
-
-            lluviaDeAmor();
 
         }
 
 
 
-        /* =========================
+        /* =================================
+           ACEPTAR
+        ================================== */
+
+        function aceptar() {
+
+            mostrarPantalla(5);
+
+            lluviaDeFresas();
+
+        }
+
+
+
+        /* =================================
            LLUVIA DE FRESAS
-        ========================= */
+        ================================== */
 
-        function lluviaDeAmor() {
+        function lluviaDeFresas() {
 
-            const emojis = [
-
-                "🍓",
-                "❤️",
-                "💕",
-                "💗",
-                "✨",
-                "🍓",
-                "❤️"
-
-            ];
+            const cantidad = 30;
 
 
-            for(let i = 0; i < 35; i++) {
+            for (
+                let i = 0;
+                i < cantidad;
+                i++
+            ) {
 
-                const elemento =
+                const fresa =
                     document.createElement("div");
 
 
-                elemento.className =
-                    "corazon";
+                fresa.className = "fresa";
 
 
-                elemento.textContent =
-                    emojis[
-                        Math.floor(
-                            Math.random() *
-                            emojis.length
-                        )
-                    ];
+                fresa.textContent = "🍓";
 
 
-                elemento.style.left =
+                fresa.style.left =
                     Math.random() * 100 + "vw";
 
 
-                elemento.style.fontSize =
-                    (18 + Math.random() * 22) + "px";
+                fresa.style.fontSize =
+                    (18 + Math.random() * 20) + "px";
 
 
-                elemento.style.animationDuration =
+                fresa.style.animationDuration =
                     (2.5 + Math.random() * 2) + "s";
 
 
-                document.body.appendChild(elemento);
+                fresa.style.animationDelay =
+                    Math.random() * 1.5 + "s";
 
 
-                setTimeout(() => {
+                document.body.appendChild(fresa);
 
-                    elemento.remove();
 
-                }, 5000);
+                setTimeout(function() {
+
+                    fresa.remove();
+
+                }, 5500);
 
             }
 
@@ -992,5 +1027,4 @@
     </script>
 
 </body>
-
 </html>
